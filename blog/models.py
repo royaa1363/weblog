@@ -40,7 +40,7 @@ class Comment(models.Model):
 
 class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, related_name='likes', on_delete=models.CASCADE, null=True, blank=True)
     is_liked = models.BooleanField(default=False)
     # is_disliked = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)

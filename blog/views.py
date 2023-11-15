@@ -5,14 +5,19 @@ from .models import Post, Comment, Category, Tag, Like
 from .serializers import PostSerializer, CommentSerializer, CategorySerializer, TagSerializer, LikeSerializer
 
 
+class LikeViewSet(viewsets.ModelViewSet):
+    queryset = Like.objects.all()
+    serializer_class = LikeSerializer
+
+
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 
-posts = Post.objects.all()
-for post in posts:
-    likes_count = post.like_set.count()
+# posts = Post.objects.all()
+# for post in posts:
+#     likes_count = post.like_set.count()
 
 
 def post_details(self):
@@ -34,8 +39,3 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
-
-
-class LikeViewSet(viewsets.ModelViewSet):
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
