@@ -24,8 +24,8 @@ class LikeInLineAdmin(admin.StackedInline):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ['title', 'user', 'pub_date']
-    filter_horizontal = ['tag']
-    search_fields = ('category__title',)
+    filter_horizontal = ['tags']
+    search_fields = ('categories__title',)
     inlines = [CommentInLineAdmin, LikeInLineAdmin]
 
 

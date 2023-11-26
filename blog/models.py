@@ -17,8 +17,8 @@ class Tag(models.Model):
 
 
 class Post(models.Model):
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
-    tag = models.ManyToManyField(Tag, null=True)
+    categories = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    tags = models.ManyToManyField(Tag, null=True)
     title = models.CharField(max_length=100, null=True, blank=False)
     image = models.ImageField(upload_to='post_images/')
     content = models.TextField()
@@ -27,6 +27,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def total_likes(self):
+        return self.likes.count()
 
 
 class Comment(models.Model):

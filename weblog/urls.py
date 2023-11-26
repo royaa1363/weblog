@@ -23,6 +23,8 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from rest_framework.authtoken import views
 
+from blog.views import post_list
+
 openapi_info = openapi.Info(
     title="bitpin API",
     default_version="v1",
@@ -39,6 +41,7 @@ urlpatterns = [
     path("__debug__/", include("debug_toolbar.urls")),
     path('docs/', schema_view.with_ui("swagger", cache_timeout=86400),
          name="api_docs", ),
+    path('posts/', post_list, name='post_list')
 ]
 
 if settings.IS_DEVEL:

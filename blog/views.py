@@ -15,11 +15,6 @@ class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
 
 
-# posts = Post.objects.all()
-# for post in posts:
-#     likes_count = post.like_set.count()
-
-
 def post_details(self):
     post = Post.objects.all()
     comments = post.comment_set.all()
@@ -39,3 +34,9 @@ class CategoryViewSet(viewsets.ModelViewSet):
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+
+def post_list(request):
+    posts = Post.objects.all()
+    context = {'posts': posts}
+    return render(request, 'blog/post_list.html', context=context)
