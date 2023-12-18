@@ -12,7 +12,7 @@ class App extends Component {
 
     getPosts() {
         axios
-            .get('http://127.0.0.1:8000/api/')
+            .get('http://127.0.0.1:8000/api/post/')
             .then(res => {
             this.setState({ blog : res.data });
             })

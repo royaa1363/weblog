@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog</title>
+</head>
+<body>
+    <h1>Blog</h1>
+
+    <!-- نمایش پست‌ها -->
+    <h2>Posts</h2>
+    <ul>
+        {% for post in posts %}
+            <li><a href="/posts/{{ p.pk }}"></a>
+                <h3>{{ post.title }}</h3>
+                <p>{{ post.content }}</p>
+                <p>Category: {{ post.category }}</p>
+{#                <p>Tags: {% for tag in post.tags %}{{ tag.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>#}
+                <p>Likes: {{ post.likes }}</p>
+                <p>Comments: {{ post.comments }}</p>
+            </li>
+        {% empty %}
+            <p>No posts found.</p>
+        {% endfor %}
+    </ul>
+
+    <!-- نمایش دسته‌بندی‌ها -->
+    <h2>Categories</h2>
+    <ul>
+        {% for category in categories %}
+            <li>{{ category.title }}</li>
+        {% empty %}
+            <p>No categories found.</p>
+        {% endfor %}
+    </ul>
+
+    <!-- نمایش تگ‌ها -->
+    <h2>Tags</h2>
+    <ul>
+        {% for tag in tags %}
+            <li>{{ tag.title }}</li>
+        {% empty %}
+            <p>No tags found.</p>
+        {% endfor %}
+    </ul>
+
+    <!-- نمایش نظرات -->
+    <h2>Comments</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <p>{{ comment.text }}</p>
+                <p>By: {{ comment.user }}</p>
+                <p>On: {{ comment.post.title }}</p>
+            </li>
+        {% empty %}
+            <p>No comments found.</p>
+        {% endfor %}
+    </ul>
+
+    <!-- نمایش تعداد لایک‌ها -->
+    <h2>Likes</h2>
+    <p>Total Likes: {{ total_likes }}</p>
+</body>
+</html>

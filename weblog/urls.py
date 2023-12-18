@@ -21,19 +21,21 @@ from django.urls import path, include
 
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
+from rest_framework import permissions
 from rest_framework.authtoken import views
 
 from blog.views import post_list
 
 openapi_info = openapi.Info(
-    title="bitpin API",
+    title="blog API",
     default_version="v1",
-    description="API to access bitpin",
-    terms_of_service="https://github.com/agn-7/bitpin",
+    description="API to access blog",
+    terms_of_service="https://www.google.com/policies/",
     license=openapi.License(name="MIT License"),
 )
 
-schema_view = get_schema_view(openapi_info, public=True, permission_classes=())
+schema_view = get_schema_view(openapi_info, public=True,
+                              permission_classes=(permissions.AllowAny,))
 
 urlpatterns = [
     path('admin/', admin.site.urls),
